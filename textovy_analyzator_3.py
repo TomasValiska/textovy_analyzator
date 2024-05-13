@@ -28,17 +28,17 @@ garpike and stingray are also present.'''
 
 
 
+database = {"bob":"123", "ann":"pass123", "mike":"password123", "liz":"pass123"}
 
-users = ["bob", "ann", "mike", "liz"]
-passwwords = ["123", "pass123", "password123", "pass123"]
 
 username = input("username: ")
 password = input("password: ")
 
+
 #Přihlášení uživatele, pokud je uživatel registrovaný, vypíše se pozdrav. Pokud není, program se ukončí.
-if username in users:
+if username in database.keys():
   zadane_jmeno = username
-  if password == passwwords[users.index(zadane_jmeno)]:
+  if password == database[zadane_jmeno]:
     print("-" * 40, f"\nWelcome to the app, {username}.\nWe have 3 texts to be analyzed.")
     print("-" * 40)
   else:
@@ -67,35 +67,28 @@ if numeric_input:
           
   pocet_slov = len(slova)
 
-# Analýza textu: počítání slov s velkým písmenem          
+#Analýza textu: počítání slov s velkým písmenem,
+#počítání slov psaných pouze velkými písmeny,
+#počítání slov psaných pouze malými písmeny,
+#počítání čísel, součet čísel         
   title = 0
+  upper = 0
+  lower = 0
+  digit = 0
+  sum_digit = 0
   for s in slova:
     if s.istitle():
       title += 1
-
-# Analýza textu: počítání slov psaných pouze velkými písmeny 
-  upper = 0
-  for u in slova:
-    if u.isupper() and u.isalpha():
+    if s.isupper() and s.isalpha():
       upper += 1
-
-# Analýza textu: počítání slov psaných pouze malými písmeny
-  lower = 0
-  for l in slova:
-    if l.islower():
+    if s.islower():
       lower += 1
-
-# Analýza textu: počítání čísel
-  digit = 0
-  for d in slova:
-    if d.isdigit():
+    if s.isdigit():
       digit += 1
-
-# Analýza textu: součet čísel
-  sum_digit = 0
-  for sd in slova:
-    if sd.isdigit():
-      sum_digit += int(sd)
+    if s.isdigit():
+      sum_digit += int(s)
+  
+    
           
   print(f"There are {pocet_slov} words in the selected text.\nThere are {title} titlecase words.")
   print(f"There is {upper} uppercase word.\nThere are {lower} lowercase words.")
